@@ -57,7 +57,12 @@ const CONTACT = {
   wa: () => ['5135', '8995', '9919'].join('').split('').reverse().join(''),
 };
 
-// "Email us" link: build the mailto only when clicked
+// Show the email address on the page (written in by script, not in the HTML source)
+document.querySelectorAll('.js-email-text').forEach((el) => {
+  el.textContent = CONTACT.email();
+});
+
+// Email links: build the mailto only when clicked
 document.querySelectorAll('.js-email').forEach((a) => {
   a.addEventListener('click', (e) => {
     e.preventDefault();
