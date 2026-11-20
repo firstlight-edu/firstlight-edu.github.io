@@ -57,6 +57,9 @@ const CONTACT = {
   wa: () => ['5135', '8995', '9919'].join('').split('').reverse().join(''),
 };
 
+// Founders' private Google Sheet (add-only endpoint). Leave empty to disable.
+const SHEET_ENDPOINT = '';
+
 // Show the email address on the page (written in by script, not in the HTML source)
 document.querySelectorAll('.js-email-text').forEach((el) => {
   el.textContent = CONTACT.email();
@@ -134,14 +137,34 @@ if (form) {
       _template: 'table',
     };
 
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/' + CONTACT.email(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(enquiry),
-      });
+    // 1) Email notification (FormSubmit)
+    const sendEmail = fetch('https://formsubmit.co/ajax/' + CONTACT.email(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(enquiry),
+    }).then(async (res) => {
       const out = await res.json().catch(() => ({}));
       if (!res.ok || String(out.success) !== 'true') throw new Error(out.message || 'Send failed');
+    });
+
+    // 2) Founders' private Google Sheet (plain-text body avoids a CORS preflight)
+    const sendSheet = SHEET_ENDPOINT
+      ? fetch(SHEET_ENDPOINT, {
+          method: 'POST',
+          body: JSON.stringify({
+            name, phone: data.phone.trim(), program: data.program,
+            student_age: data.student_age || '', message: data.message || '', _honey: data._honey || '',
+          }),
+        }).then(async (res) => {
+          const out = await res.json().catch(() => ({}));
+          if (!out.ok) throw new Error('Sheet save failed');
+        })
+      : Promise.reject(new Error('Sheet not configured'));
+
+    try {
+      // Saved if at least one destination succeeded
+      const results = await Promise.allSettled([sendEmail, sendSheet]);
+      if (!results.some((r) => r.status === 'fulfilled')) throw new Error('Send failed');
 
       // Saved. Now open WhatsApp with a pre-filled message.
       const text = [
