@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Portal — First Light</title>
+  <meta name="description" content="First Light student portal: log in with your Student ID to see your sessions, messages and reports.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="student-page">
+
+  <header class="site-header scrolled">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="First Light home">
+        <img src="images/logo.svg" alt="" width="42" height="42">
+        <span>First Light</span>
+      </a>
+      <nav class="sp-nav">
+        <a href="index.html" class="btn btn-small btn-ghost">← Back to website</a>
+        <button class="btn btn-small btn-primary" id="logoutBtn" hidden>Log out</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="sp-main">
+
+    <!-- ========== LOGIN ========== -->
+    <section id="loginView" class="sp-login container">
+      <div class="sp-login-art" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" width="96" height="96">
+          <path d="M22 34a10 10 0 0 1 20 0Z" fill="#F7B33B"/>
+          <g stroke="#F7B33B" stroke-width="3" stroke-linecap="round"><path d="M32 8v6"/><path d="M18 14l4 4"/><path d="M46 14l-4 4"/></g>
+          <path d="M32 40c-6-4-14-5-24-4v16c10-1 18 0 24 4 6-4 14-5 24-4V36c-10-1-18 0-24 4Z" fill="#fff"/>
+          <path d="M32 40v16" stroke="#1F1A4A" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <h2>Welcome back</h2>
+        <p>Your sessions, messages from our founders and your reports, all in one place.</p>
+      </div>
+
+      <form class="sp-card" id="loginForm" novalidate>
+        <p class="eyebrow">Student portal</p>
+        <h1>Log in</h1>
+        <p class="muted-text">Use the Student ID and password First Light sent you on WhatsApp.</p>
+        <div class="field">
+          <label for="sid">Student ID</label>
+          <input id="sid" name="id" autocomplete="username" placeholder="FL-0001" required maxlength="7" style="text-transform:uppercase">
+        </div>
+        <div class="field">
+          <label for="spw">Password</label>
+          <div class="pw-wrap">
+            <input id="spw" name="password" type="password" autocomplete="current-password" placeholder="xxxx-xxxx" required maxlength="40">
+            <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">Show</button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Log in</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="sp-help">Forgot your password? <a href="index.html#contact">Contact us</a> and we'll send a new one.</p>
+      </form>
+    </section>
+
+    <!-- ========== DASHBOARD ========== -->
+    <section id="dashView" class="container sp-dash" hidden>
+      <div class="sp-hello">
+        <div class="sp-avatar" id="avatar">?</div>
+        <div>
+          <p class="eyebrow" id="sidLabel">FL-0000</p>
+          <h1 id="hello">Hello!</h1>
+          <p class="muted-text" id="progLine"></p>
+        </div>
+      </div>
+
+      <div class="sp-grid">
+        <div class="sp-card">
+          <h3>Your program</h3>
+          <dl class="sp-dl">
+            <div><dt>Program</dt><dd id="dProgram">—</dd></div>
+            <div><dt>Age / class</dt><dd id="dAge">—</dd></div>
+            <div><dt>Session date</dt><dd id="dSession">—</dd></div>
+            <div><dt>Status</dt><dd id="dStatus">—</dd></div>
+          </dl>
+        </div>
+
+        <div class="sp-card">
+          <h3>Reports &amp; files</h3>
+          <div id="files"></div>
+        </div>
+
+        <div class="sp-card sp-wide">
+          <h3>Messages from First Light</h3>
+          <div id="messages"></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="loadingView" class="sp-loading" hidden><div class="sp-spinner"></div>Loading your portal…</div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> First Light. Your information is private and only visible to you and our founders.</p>
+    </div>
+  </footer>
+
+  <script src="student.js"></script>
+</body>
+</html>
