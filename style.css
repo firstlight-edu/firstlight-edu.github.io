@@ -404,7 +404,14 @@ p { margin: 0 0 1em; }
 .footer-links a { text-decoration: none; }
 .footer-links a:hover { color: #fff; }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); margin-top: 36px; padding-top: 22px; font-size: .88rem; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .footer-bottom p { margin: 0; }
+.founder-login {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+  font-size: .85rem; color: #8E89B8; padding: 6px 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px;
+  transition: color .2s, border-color .2s;
+}
+.founder-login:hover { color: #fff; border-color: var(--sun); }
 
 /* Reveal on scroll */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
