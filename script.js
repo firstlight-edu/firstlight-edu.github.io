@@ -79,6 +79,14 @@ document.querySelectorAll('.js-email').forEach((a) => {
    --------------------------------------------------------- */
 const form = document.getElementById('enquiry-form');
 
+// "Book your session" buttons pre-select the right program in the form
+document.querySelectorAll('.js-pick-program').forEach((btn) =>
+  btn.addEventListener('click', () => {
+    const select = document.getElementById('f-program');
+    if (select) select.value = btn.dataset.program;
+  })
+);
+
 if (form) {
   const status = form.querySelector('.form-status');
   const button = form.querySelector('button[type="submit"]');
