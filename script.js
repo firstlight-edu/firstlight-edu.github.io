@@ -58,7 +58,8 @@ const CONTACT = {
 };
 
 // Founders' private Google Sheet (add-only endpoint). Leave empty to disable.
-const SHEET_ENDPOINT = '';
+const SHEET_ENDPOINT =
+  'https://script.google.com/macros/s/AKfycbxosr3sBT3MF7hzZgjEFiACJPxyN2jKKXnRgeSyJaGdEzqDWh6lKjDbGjBk4J56suA/exec';
 
 // Show the email address on the page (written in by script, not in the HTML source)
 document.querySelectorAll('.js-email-text').forEach((el) => {
