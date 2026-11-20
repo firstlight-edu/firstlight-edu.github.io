@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- First Light mark: the sun rising from an open book. Original artwork. For dark backgrounds. -->
+  <defs>
+    <linearGradient id="fl-sun-l" x1="32" y1="16" x2="32" y2="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7B33B"/>
+      <stop offset="1" stop-color="#EE6A4D"/>
+    </linearGradient>
+  </defs>
+  <path d="M22 34a10 10 0 0 1 20 0Z" fill="url(#fl-sun-l)"/>
+  <g stroke="#F7B33B" stroke-width="3" stroke-linecap="round">
+    <path d="M32 8v6"/>
+    <path d="M18 14l4 4"/>
+    <path d="M46 14l-4 4"/>
+  </g>
+  <path d="M32 40c-6-4-14-5-24-4v16c10-1 18 0 24 4 6-4 14-5 24-4V36c-10-1-18 0-24 4Z" fill="#FFFFFF"/>
+  <path d="M32 40v16" stroke="#1F1A4A" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
